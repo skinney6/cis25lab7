@@ -6,10 +6,12 @@
  * Date:         
  */
 #include <iostream>
+using namespace std;
 #include "ScottKinneyLab7Box.h"
 #include "ScottKinneyLab7Fraction.h"
 #include "ScottKinneyLab7Rectangle.h"
-using namespace std;
+
+FractionScottK const six(6, 1);
 
 BoxScottK& BoxScottK::operator=(const BoxScottK &arg) {
     if (this != &arg) {  // no self-assignemnet
@@ -22,10 +24,9 @@ FractionScottK BoxScottK::getHeight(void) {
     return height;
 }
 
-// multiply the rectangle area times 6 (6/1) sides
+// multiply the rectangle area times 6 sides
 FractionScottK BoxScottK::getAreaScottKinney(void) {
-    return FractionScottK(FractionScottK(6, 1) 
-			  * (RectangleScottK::getAreaScottKinney()));
+    return FractionScottK(six * (RectangleScottK::getAreaScottKinney()));
 }
 
 FractionScottK BoxScottK::getVolScottKinney(void) {
