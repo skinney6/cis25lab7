@@ -1,0 +1,28 @@
+#ignore objects and archives anywhere in the tree
+*.[oa]
+
+#ignore the executable
+lab7
+
+# Compiled Object files
+*.slo
+*.lo
+*.o
+*.d
+*.obj
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+*.dll
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+*.lib
+
+# Executables
+*.exe
+*.out
+*.app
