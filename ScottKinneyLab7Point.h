@@ -23,6 +23,8 @@ public:
     PointScottK& operator=(const PointScottK &);
     FractionScottK getX();
     FractionScottK getY();
+
+    FractionScottK area(const PointScottK &) const;
     void moveBy(const FractionScottK &, const FractionScottK &);
     void moveBy(int);
     void flipByX();
@@ -35,7 +37,6 @@ public:
     bool operator<(const PointScottK &) const;
     bool operator>=(const PointScottK &) const;
     bool operator>(const PointScottK &) const;
-
 };
 
 #endif

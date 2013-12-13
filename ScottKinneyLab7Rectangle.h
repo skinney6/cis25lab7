@@ -8,9 +8,11 @@
 #ifndef SCOTTKINNEYLAB7RECTANGLE_H
 #define SCOTTKINNEYLAB7RECTANGLE_H
 #include "ScottKinneyLab7Point.h"
+#include "ScottKinneyLab7Fraction.h"
+#include "ScottKinneyLab7Shape.h"
 
-class RectangleScottK {
-protected:
+class RectangleScottK : public ShapeScottK {
+private:
     PointScottK ll;
     PointScottK ur;
 public:
@@ -22,10 +24,11 @@ public:
     RectangleScottK& operator=(const RectangleScottK &);
     
     void update(PointScottK &, PointScottK &);
+    FractionScottK getArea(void) const;
+    FractionScottK getVol(void) const;
+    void print(ostream &);
 
-    FractionScottK getAreaScottKinney(void);
-
-    friend ostream& operator<<(ostream &, const RectangleScottK &);
+    friend ostream& operator<<(ostream &, RectangleScottK &);
     friend istream& operator>>(istream &, RectangleScottK &);
 
     bool operator==(const RectangleScottK &) const;
@@ -34,7 +37,6 @@ public:
     bool operator<(const RectangleScottK &) const;
     bool operator>=(const RectangleScottK &) const;
     bool operator>(const RectangleScottK &) const;
-
 };
 
 #endif

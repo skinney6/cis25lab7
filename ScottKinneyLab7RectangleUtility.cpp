@@ -13,13 +13,22 @@ using namespace std;
 #include "ScottKinneyLab7PointUtility.h"
 #include "ScottKinneyLab7Fraction.h"
 #include "ScottKinneyLab7FractionUtility.h"
+#include "ScottKinneyLab7Shape.h"
 
-void rectangleInit(RectangleScottK *&rec) {
-    PointScottK *ptLl;
-    PointScottK *ptUr;
+RectangleScottK*& rectangleInit(RectangleScottK *&rec) {
+    PointScottK *ptLl = NULL;
+    PointScottK *ptUr = NULL;
 
+    cout << "Lower left point\n";
     pointInit(ptLl);
+    cout << "Upper right point\n";    
     pointInit(ptUr);
+    
+    if (*ptUr < *ptLl) {
+	cout << "Upper right must be greater than lower left point\n";    
+	cout << "Upper right point\n";
+	pointInit(ptUr);
+    }
 
     if (rec)
 	rec->update(*ptLl, *ptUr);
@@ -28,6 +37,8 @@ void rectangleInit(RectangleScottK *&rec) {
 
     delete ptLl;
     delete ptUr;
+
+    return (rec);
 }
 
 

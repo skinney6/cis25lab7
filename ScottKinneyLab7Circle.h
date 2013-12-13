@@ -9,8 +9,9 @@
 #define SCOTTKINNEYLAB7CIRCLE_H
 #include "ScottKinneyLab7Fraction.h"
 #include "ScottKinneyLab7Point.h"
+#include "ScottKinneyLab7Shape.h"
 
-class CircleScottK {
+class CircleScottK : public ShapeScottK {
 protected:
     PointScottK center;
     FractionScottK radius;  // no negative value allowed
@@ -22,10 +23,12 @@ public:
 
     CircleScottK& operator=(const CircleScottK &);
 
-    FractionScottK getR(void);
-    FractionScottK getAreaScottKinney(void);
+    void print(ostream &);
+    FractionScottK getR(void) const;
+    FractionScottK getArea(void) const;
+    FractionScottK getVol(void) const;
     void update(PointScottK &, FractionScottK &);
-    friend ostream& operator<<(ostream &, const CircleScottK &);
+    friend ostream& operator<<(ostream &, CircleScottK &);
     friend istream& operator>>(istream &, CircleScottK &);
 
 };

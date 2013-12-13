@@ -13,8 +13,9 @@ using namespace std;
 #include "ScottKinneyLab7PointUtility.h"
 #include "ScottKinneyLab7Fraction.h"
 #include "ScottKinneyLab7FractionUtility.h"
+#include "ScottKinneyLab7Shape.h"
 
-void circleInit(CircleScottK *&cir) {
+CircleScottK*& circleInit(CircleScottK *&cir) {
     PointScottK *center = NULL;
     FractionScottK *radius = NULL;
 
@@ -34,4 +35,6 @@ void circleInit(CircleScottK *&cir) {
 
     delete center;
     delete radius;
+
+    return (cir);
 }

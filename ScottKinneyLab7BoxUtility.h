@@ -7,11 +7,8 @@
  */
 #ifndef SCOTTKINNEYLAB7BOXUTILITY_H
 #define SCOTTKINNEYLAB7BOXUTILITY_H
-#include "ScottKinneyLab7Fraction.h"
 #include "ScottKinneyLab7Box.h"
 
-FractionScottK compareBoxArea(BoxScottK &, BoxScottK &);
-FractionScottK compareBoxVol(BoxScottK &, BoxScottK &);
-void boxInit(BoxScottK *&);
+BoxScottK*& boxInit(BoxScottK *&);
 
 #endif

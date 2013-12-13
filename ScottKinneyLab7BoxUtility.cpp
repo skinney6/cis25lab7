@@ -13,16 +13,23 @@ using namespace std;
 #include "ScottKinneyLab7PointUtility.h"
 #include "ScottKinneyLab7Fraction.h"
 #include "ScottKinneyLab7FractionUtility.h"
+#include "ScottKinneyLab7Shape.h"
 
-//extern FractionScottK fraZero;
-
-void boxInit(BoxScottK *&box) {
+BoxScottK*& boxInit(BoxScottK *&box) {
     PointScottK *ptLl;
     PointScottK *ptUr;
     FractionScottK *height = NULL;
 
+    cout << "Lower left point\n";
     pointInit(ptLl);
+    cout << "Upper right point\n";    
     pointInit(ptUr);
+    
+    if (*ptUr < *ptLl) {
+	cout << "Upper right must be greater than lower left point\n";    
+	cout << "Upper right point\n";
+	pointInit(ptUr);
+    }
 
     cout << "Heigth: ";
     fractionInit(height);
@@ -39,4 +46,6 @@ void boxInit(BoxScottK *&box) {
     delete ptLl;
     delete ptUr;
     delete height;
+    
+    return (box);
 }

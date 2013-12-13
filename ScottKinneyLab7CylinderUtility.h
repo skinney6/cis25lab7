@@ -9,12 +9,7 @@
 #define SCOTTKINNEYLAB7CYLINDERUTILITY_H
 
 #include "ScottKinneyLab7Cylinder.h"
-#include "ScottKinneyLab7Circle.h"
-#include "ScottKinneyLab7Fraction.h"
 
-void cylinderInit(CylinderScottK *&);
-
-FractionScottK compareCylinderArea(CircleScottK &, CircleScottK &);
-FractionScottK compareCylinderVol(CircleScottK &, CircleScottK &);
+CylinderScottK*& cylinderInit(CylinderScottK *&);
 
 #endif

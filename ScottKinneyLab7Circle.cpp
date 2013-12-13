@@ -10,19 +10,29 @@ using namespace std;
 #include "ScottKinneyLab7Circle.h"
 #include "ScottKinneyLab7Point.h"
 #include "ScottKinneyLab7Fraction.h"
+#include "ScottKinneyLab7Shape.h"
 
 FractionScottK const PI(157/50);
 
-FractionScottK CircleScottK::getR(void) {
+void CircleScottK::print(ostream &os) {
+    os << "Circle:\nCenter: " << center << " Radius: " << radius <<
+	" Area: " << getArea() << endl;
+}
+
+FractionScottK CircleScottK::getR(void) const {
     return radius;
 }
 
-FractionScottK CircleScottK::getAreaScottKinney(void) {
+FractionScottK CircleScottK::getArea(void) const {
     return FractionScottK(PI * (radius * radius));
 }
 
-ostream& operator<<(ostream &os, const CircleScottK &circle) {
-    os << "Center: " << circle.center << " Radius: " << circle.radius;
+FractionScottK CircleScottK::getVol(void) const {
+    return 0;
+}
+
+ostream& operator<<(ostream &os, CircleScottK &circle) {
+    circle.print(os);
     return os;
 }
 
@@ -45,7 +55,6 @@ CircleScottK::CircleScottK(const CircleScottK &old) {
 }
 
 CircleScottK::~CircleScottK() {
-
 }                 
 
 CircleScottK& CircleScottK::operator=(const CircleScottK &arg) {

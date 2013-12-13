@@ -15,16 +15,9 @@ using namespace std;
 #include "ScottKinneyLab7PointUtility.h"
 #include "ScottKinneyLab7Fraction.h"
 #include "ScottKinneyLab7FractionUtility.h"
+#include "ScottKinneyLab7Shape.h"
 
-FractionScottK compareCylinderVol(CylinderScottK &c1, CylinderScottK &c2) {
-    return FractionScottK(c1.getR() - c2.getR());
-}
-
-FractionScottK compareCylinderArea(CylinderScottK &c1, CylinderScottK &c2) {
-    return FractionScottK(c1.getR() - c2.getR());
-}
-
-void cylinderInit(CylinderScottK *&cyl) {
+CylinderScottK*& cylinderInit(CylinderScottK *&cyl) {
     PointScottK *center = NULL;
     FractionScottK *radius = NULL;
     FractionScottK *height = NULL;
@@ -52,4 +45,6 @@ void cylinderInit(CylinderScottK *&cyl) {
     delete center;
     delete radius;
     delete height;
+
+    return (cyl);
 }

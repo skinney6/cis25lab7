@@ -22,10 +22,10 @@ public:
     ~BoxScottK();  
 
     void update(PointScottK &, PointScottK &, FractionScottK &);
-    void print(void);
-    FractionScottK getHeight(void);
-    FractionScottK getAreaScottKinney(void);
-    FractionScottK getVolScottKinney(void);
+    void print(ostream &);
+    FractionScottK getHeight(void) const;
+    FractionScottK getArea(void) const;
+    FractionScottK getVol(void) const;
 
     BoxScottK& operator=(const BoxScottK &);
     bool operator==(const BoxScottK &) const;
@@ -34,7 +34,6 @@ public:
     bool operator<(const BoxScottK &) const;
     bool operator>=(const BoxScottK &) const;
     bool operator>(const BoxScottK &) const;
-
 };
 
 #endif

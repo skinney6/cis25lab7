@@ -10,6 +10,10 @@
 #include "ScottKinneyLab7Fraction.h"
 using namespace std;
 
+FractionScottK PointScottK::area(const PointScottK &arg) const {
+    return FractionScottK((arg.x - x) * (arg.y - y));
+}
+
 bool PointScottK::operator==(const PointScottK &arg) const {
     if (x == arg.x && y == arg.y)
 	return true;

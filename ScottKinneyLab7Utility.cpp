@@ -8,6 +8,7 @@
 #include <iostream>
 using namespace std;
 #include "ScottKinneyLab7Utility.h"
+#include "ScottKinneyLab7Shape.h"
 #include "ScottKinneyLab7Fraction.h"
 #include "ScottKinneyLab7Rectangle.h"
 #include "ScottKinneyLab7Circle.h"
@@ -17,11 +18,12 @@ using namespace std;
 #include "ScottKinneyLab7CircleUtility.h"
 #include "ScottKinneyLab7CylinderUtility.h"
 #include "ScottKinneyLab7BoxUtility.h"
-
+//TODO put delete in class destructors
 int const compareCount = 2;
 
-void mainMenuScottKinney(void) {
+void mainMenu(void) {
     int option;
+    int const shapeArySize = 8;
     RectangleScottK *recPt1 = NULL;
     RectangleScottK *recPt2 = NULL;
     CircleScottK *cirPt1 = NULL;
@@ -30,6 +32,8 @@ void mainMenuScottKinney(void) {
     BoxScottK *boxPt2 = NULL;
     CylinderScottK *cylPt1 = NULL;
     CylinderScottK *cylPt2 = NULL;
+    ShapeScottK *shapeAry[shapeArySize] 
+	= {recPt1, recPt2, cirPt1, cirPt2, boxPt1, boxPt2, cylPt1, cylPt2};
 
     do {
 	cout << "********************************************"
@@ -49,48 +53,46 @@ void mainMenuScottKinney(void) {
 	switch (option) {
 	case 1:
 	    cout << "Rectangle 1\n";
-	    rectangleInit(recPt1);
+	    (*(shapeAry + 0)) = rectangleInit(recPt1);
 	    cout << "Rectangle 2\n";
-	    rectangleInit(recPt2);
+	    (*(shapeAry + 1)) = rectangleInit(recPt2);
 	    break;
 	case 2:
 	    cout << "Circle 1\n";
-	    circleInit(cirPt1);
+	    (*(shapeAry + 2)) = circleInit(cirPt1);
 	    cout << "Circle 2\n";
-	    circleInit(cirPt2);
+	    (*(shapeAry + 3)) = circleInit(cirPt2);
 	    break;
 	case 3:
 	    cout << "Box 1\n";
-	    boxInit(boxPt1);
+	    (*(shapeAry + 4)) = boxInit(boxPt1);
 	    cout << "Box 2\n";
-	    boxInit(boxPt2);
+	    (*(shapeAry + 5)) = boxInit(boxPt2);
 	    break;
 	case 4:
 	    cout << "Cylinder 1\n";
-	    cylinderInit(cylPt1);
+	    (*(shapeAry + 6)) = cylinderInit(cylPt1);
 	    cout << "Cylinder 2\n";
-	    cylinderInit(cylPt2);
+	    (*(shapeAry + 7)) = cylinderInit(cylPt2);
 	    break;
 	case 5:
-	    menuCompAreaScottKinney(recPt1, recPt2, boxPt1, boxPt2, 
-				    cirPt1, cirPt2, cylPt1, cylPt2);
+	    menuCompArea(shapeAry, shapeArySize);
 	    break;
 	case 6:
-	    menuCompVolScottKinney(boxPt1, boxPt2, cylPt1, cylPt2);
+	    menuCompVol(shapeAry, shapeArySize);
 	    break;
 	case 7:
-	    menuPrintScottKinney(recPt1, recPt2, boxPt1, boxPt2, 
-				 cirPt1, cirPt2, cylPt1, cylPt2);
+	    menuPrint(shapeAry, shapeArySize);
 	    break;
 	case 8:
-	    delete cirPt1;
+	    /*	    delete cirPt1;
 	    delete cirPt2;
 	    delete recPt1;
 	    delete recPt2;
 	    delete boxPt1;
 	    delete boxPt2;
 	    delete cylPt1;
-	    delete cylPt2;
+	    delete cylPt2;*/
 	    break;
 	default:
 	    cout << "Wrong Option. Use 1 through 8";
@@ -99,10 +101,9 @@ void mainMenuScottKinney(void) {
     } while (option != 8);
 }
 
-void menuCompVolScottKinney(BoxScottK *&b1, BoxScottK *&b2, 
-			    CylinderScottK *&cy1, CylinderScottK *&cy2) {
+void menuCompVol(ShapeScottK *shapeAry[], int shapeArySize) {
     int option;
-    FractionScottK obj[compareCount];
+    ShapeScottK *obj[compareCount];
     int i = 0;
 
     cout << "***********************************"
@@ -120,43 +121,43 @@ void menuCompVolScottKinney(BoxScottK *&b1, BoxScottK *&b2,
 
 	switch (option) {
 	case 1:
-	    if (b1 != NULL) {
+	    if ((*(shapeAry + 4) != NULL)) {
 		cout << "Box One ";
-		obj[i] = b1->getVolScottKinney(); 
-		cout << obj[i] << endl;
+		obj[i] = shapeAry[4]; 
+		cout << **(obj + i) << endl;
 		i++;
 	    } else {
-		errorInitScottKinney();
+		errorInit();
 	    }
 	    break;
 	case 2:
-	    if (b2 != NULL) {
+	    if ((*(shapeAry + 5) != NULL)) {
 		cout << "Box Two ";
-		obj[i] = b2->getVolScottKinney(); 
-		cout << obj[i] << endl;
+		obj[i] = shapeAry[5]; 
+		cout << **(obj + i) << endl;
 		i++;
 	    } else {
-		errorInitScottKinney();
+		errorInit();
 	    }
 	    break;
 	case 3:
-	    if (cy1 != NULL) {
+	    if ((*(shapeAry + 6) != NULL)) {
 		cout << "Cylinder One ";
-		obj[i] = cy1->getVolScottKinney(); 
-		cout << obj[i] << endl;
+		obj[i] = shapeAry[6]; 
+		cout << **(obj + i) << endl;
 		i++;
 	    } else {
-		errorInitScottKinney();
+		errorInit();
 	    }
 	    break;
 	case 4:
-	    if (cy2 != NULL) {
+	    if ((*(shapeAry + 7) != NULL)) {
 		cout << "Cylinder Two ";
-		obj[i] = cy2->getVolScottKinney(); 
-		cout << obj[i] << endl;
+		obj[i] = shapeAry[7]; 
+		cout << **(obj + i) << endl;
 		i++;
 	    } else {
-		errorInitScottKinney();
+		errorInit();
 	    }
 	    break;
 	default:
@@ -165,26 +166,25 @@ void menuCompVolScottKinney(BoxScottK *&b1, BoxScottK *&b2,
 	}
     } while (i < compareCount);
 
-    //TODO put this in a function it is repeated in vol & area
-    if (obj[0] < obj[1]) {
-	cout << obj[1] << " is larger than " << obj[0] << " by " 
-	     << obj[1] - obj[0] << endl;
-    } else if (obj[1] < obj[0]) {
-	cout << obj[0] << " is larger than " << obj[1] << " by " 
-	     << obj[0] - obj[1] << endl;	
-    } else if (obj[0] == obj[1]) {
-	cout << obj[0] << " & " << obj[1] << " are equal " << endl;
+    if (((**(obj + 0)).getVol()) < ((**(obj + 1)).getVol())) {
+	cout << **(obj + 1) << "\nis larger than\n" << **(obj + 0) << "\nby " 
+	     << ((**(obj + 1)).getVol()) - ((**(obj + 0)).getVol()) << endl;
+
+    } else if (((**(obj + 1)).getVol()) < ((**(obj + 0)).getVol())) {
+	cout << **(obj + 0) << "\nis larger than\n" << **(obj + 1) << "\nby: " 
+	     << ((**(obj + 0)).getVol()) - ((**(obj + 1)).getVol()) << endl;
+
+    } else if (((**(obj + 0)).getVol()) == ((**(obj + 1)).getVol())) {
+	cout << **(obj + 0) << "\n&\n" << **(obj + 1) << "\nare equal " << endl;
+
     } else {
 	cout << "Error" << endl;
     }
 }
 
-void menuCompAreaScottKinney(RectangleScottK *&r1, RectangleScottK *&r2, 
-			     BoxScottK *&b1, BoxScottK *&b2, 
-			     CircleScottK *&ci1, CircleScottK *&ci2, 
-			     CylinderScottK *&cy1, CylinderScottK *&cy2) {
+void menuCompArea(ShapeScottK *shapeAry[], int shapeArySize) {
     int option;
-    FractionScottK obj[compareCount];
+    ShapeScottK *obj[compareCount];
     int i = 0;
 
     cout << "**************************************"
@@ -206,83 +206,83 @@ void menuCompAreaScottKinney(RectangleScottK *&r1, RectangleScottK *&r2,
 
 	switch (option) {
 	case 1:
-	    if (r1 != NULL) {
+	    if ((*(shapeAry + 0) != NULL)) {
 		cout << "Rectangle One ";
-		obj[i] = r1->getAreaScottKinney(); 
-		cout << obj[i] << endl;
+		obj[i] = shapeAry[0]; 
+		cout << **(obj + i) << endl;
 		i++;
 	    } else {
-		errorInitScottKinney();
+		errorInit();
 	    }
 	    break;
 	case 2:
-	    if (r2 != NULL) {
+	    if ((*(shapeAry + 1) != NULL)) {
 		cout << "Rectangle Two ";
-		obj[i] = r2->getAreaScottKinney(); 
-		cout << obj[i] << endl;;
+		obj[i] = shapeAry[1]; 
+		cout << **(obj + i) << endl;;
 		i++;
 	    } else {
-		errorInitScottKinney();
+		errorInit();
 	    }
 	    break;
 	case 3:
-	    if (b1 != NULL) {
+	    if ((*(shapeAry + 4) != NULL)) {
 		cout << "Box One ";
-		obj[i] = b1->getAreaScottKinney(); 
-		cout << obj[i] << endl;
+		obj[i] = shapeAry[4]; 
+		cout << **(obj + i) << endl;
 		i++;
 	    } else {
-		errorInitScottKinney();
+		errorInit();
 	    }
 	    break;
 	case 4:
-	    if (b2 != NULL) {
+	    if ((*(shapeAry + 5) != NULL)) {
 		cout << "Box Two ";
-		obj[i] = b2->getAreaScottKinney(); 
-		cout << obj[i] << endl;
+		obj[i] = shapeAry[5]; 
+		cout << **(obj + i) << endl;
 		i++;
 	    } else {
-		errorInitScottKinney();
+		errorInit();
 	    }
 	    break;
 	case 5:
-	    if (ci1 != NULL) {
+	    if ((*(shapeAry + 2) != NULL)) {
 		cout << "Circle One ";
-		obj[i] = ci1->getAreaScottKinney(); 
-		cout << obj[i] << endl;
+		obj[i] = shapeAry[2]; 
+		cout << **(obj + i) << endl;
 		i++;
 	    } else {
-		errorInitScottKinney();
+		errorInit();
 	    }
 	    break;
 	case 6:
-	    if (ci2!= NULL) {
+	    if ((*(shapeAry + 3) != NULL)) {
 		cout << "Circle Two ";
-		obj[i] = ci2->getAreaScottKinney(); 
-		cout << obj[i] << endl;
+		obj[i] = shapeAry[3]; 
+		cout << **(obj + i) << endl;
 		i++;
 	    } else {
-		errorInitScottKinney();
+		errorInit();
 	    }
 	    break;
 	case 7:
-	    if (cy1 != NULL) {
+	    if ((*(shapeAry + 6) != NULL)) {
 		cout << "Cylinder One ";
-		obj[i] = cy1->getAreaScottKinney(); 
-		cout << obj[i] << endl;
+		obj[i] = shapeAry[6]; 
+		cout << **(obj + i) << endl;
 		i++;
 	    } else {
-		errorInitScottKinney();
+		errorInit();
 	    }
 	    break;
 	case 8:
-	    if (cy2 != NULL) {
+	    if ((*(shapeAry + 7) != NULL)) {
 		cout << "Cylinder Two ";
-		obj[i] = cy2->getAreaScottKinney(); 
-		cout << obj[i] << endl;
+		obj[i] = shapeAry[7]; 
+		cout << **(obj + i) << endl;
 		i++;
 	    } else {
-		errorInitScottKinney();
+		errorInit();
 	    }
 	    break;
 	default:
@@ -291,23 +291,23 @@ void menuCompAreaScottKinney(RectangleScottK *&r1, RectangleScottK *&r2,
 	}
     } while (i < compareCount);
 
-    if (obj[0] < obj[1]) {
-	cout << obj[1] << " is larger than " << obj[0] << " by " 
-	     << obj[1] - obj[0] << endl;
-    } else if (obj[1] < obj[0]) {
-	cout << obj[0] << " is larger than " << obj[1] << " by " 
-	     << obj[0] - obj[1] << endl;	
-    } else if (obj[0] == obj[1]) {
-	cout << obj[0] << " & " << obj[1] << " are equal " << endl;
+    if (((**(obj + 0)).getArea()) < ((**(obj + 1)).getArea())) {
+	cout << **(obj + 1) << "\nis larger than\n" << **(obj + 0) << "\nby " 
+	     << ((**(obj + 1)).getArea()) - ((**(obj + 0)).getArea()) << endl;
+
+    } else if (((**(obj + 1)).getArea()) < ((**(obj + 0)).getArea())) {
+	cout << **(obj + 0) << "\nis larger than\n" << **(obj + 1) << "\nby: " 
+	     << ((**(obj + 0)).getArea()) - ((**(obj + 1)).getArea()) << endl;
+
+    } else if (((**(obj + 0)).getArea()) == ((**(obj + 1)).getArea())) {
+	cout << **(obj + 0) << "\n&\n" << **(obj + 1) << "\nare equal " << endl;
+
     } else {
 	cout << "Error" << endl;
     }
 }
 
-void menuPrintScottKinney(RectangleScottK *&r1, RectangleScottK *&r2, 
-			     BoxScottK *&b1, BoxScottK *&b2, 
-			     CircleScottK *&ci1, CircleScottK *&ci2, 
-			     CylinderScottK *&cy1, CylinderScottK *&cy2) {
+void menuPrint(ShapeScottK *shapeAry[], int shapeArySize) {
     int option;
     int i = 0;
 
@@ -330,79 +330,75 @@ void menuPrintScottKinney(RectangleScottK *&r1, RectangleScottK *&r2,
 
 	switch (option) {
 	case 1:
-	    if (r1 != NULL) {
+	    if ((*(shapeAry + 0) != NULL)) {
 		cout << "Rectangle One\n";
-		cout << *r1 << endl;
+		cout << **(shapeAry + 0) << endl;
 		i++;
 	    } else {
-		errorInitScottKinney();
+		errorInit();
 	    }
 	    break;
 	case 2:
-	    if (r2 != NULL) {
+	    if ((*(shapeAry + 1) != NULL)) {
 		cout << "Rectangle Two\n";
-		cout << *r2 << endl;;
+		cout << **(shapeAry + 1) << endl;
 		i++;
 	    } else {
-		errorInitScottKinney();
+		errorInit();
 	    }
 	    break;
 	case 3:
-	    if (b1 != NULL) {
-		cout << "Box One\n";
-		b1->print();
+	    if ((*(shapeAry + 4) != NULL)) {
+		cout << **(shapeAry + 4) << endl;
 		i++;
 	    } else {
-		errorInitScottKinney();
+		errorInit();
 	    }
 	    break;
 	case 4:
-	    if (b2 != NULL) {
-		cout << "Box Two\n";
-		b2->print(); 
+	    if ((*(shapeAry + 5) != NULL)) {
+		cout << **(shapeAry + 5) << endl; 
 		i++;
 	    } else {
-		errorInitScottKinney();
+		errorInit();
 	    }
 	    break;
 	case 5:
-	    if (ci1 != NULL) {
+	    if ((*(shapeAry + 2) != NULL)) {
 		cout << "Circle One\n";
-		cout << *ci1 << endl;
+		cout << **(shapeAry + 2) << endl;
 		i++;
 	    } else {
-		errorInitScottKinney();
+		errorInit();
 	    }
 	    break;
 	case 6:
-	    if (ci2!= NULL) {
+	    if ((*(shapeAry + 3) != NULL)) {
 		cout << "Circle Two\n";
-		cout << *ci2 << endl;
+		cout << **(shapeAry + 3)<< endl;
 		i++;
 	    } else {
-		errorInitScottKinney();
+		errorInit();
 	    }
 	    break;
 	case 7:
-	    if (cy1 != NULL) {
-		cout << "Cylinder One\n";
-		cy1->print();
+	    if ((*(shapeAry + 6) != NULL)) {
+		cout << **(shapeAry + 6) << endl; 
 		i++;
 	    } else {
-		errorInitScottKinney();
+		errorInit();
 	    }
 	    break;
 	case 8:
-	    if (cy2 != NULL) {
-		cout << "Cylinder Two\n";
-		cy2->print();
+	    if ((*(shapeAry + 7) != NULL)) {
+		cout << **(shapeAry + 7) << endl;
 		i++;
 	    } else {
-		errorInitScottKinney();
+		errorInit();
 	    }
 	    break;
 	case 9:
-	    menuPrintAllInitScottKinney(r1, r2, b1, b2, ci1, ci2, cy1, cy2);
+	    menuPrintAllInit(shapeAry);
 	    i = compareCount;
 	    break;
 	default:
@@ -412,37 +408,33 @@ void menuPrintScottKinney(RectangleScottK *&r1, RectangleScottK *&r2,
     } while (i < compareCount);
 }
 
-void menuPrintAllInitScottKinney(RectangleScottK *&r1, RectangleScottK *&r2, 
-				 BoxScottK *&b1, BoxScottK *&b2, 
-				 CircleScottK *&ci1, CircleScottK *&ci2, 
-				 CylinderScottK *&cy1, CylinderScottK *&cy2) {
-    if (r1)
-	cout << "Rectangle 1: "<< *r1 << endl;
-    if (r2)
-	cout << "Rectangle 2: "<< *r2 << endl;
-    if (b1) {
-	cout << "Box 1: ";
-	b1->print();
-    }
-    if (b2) {
-	cout << "Box 2: ";
-	b2->print();
-    }
-    if (ci1) 
-	cout << "Circle 1: " << *ci1 << endl;
-    if (ci2)
-	cout << "Circle 2: " << *ci2 << endl;
-    if (cy1) {
-	cout << "Cylinder 1: ";
-	cy1->print();
-    }
-    if (cy2) {
-	cout << "Cylinder 2: ";
-	cy2->print();
-    }
+void menuPrintAllInit(ShapeScottK *shapeAry[]) {
+    if (((*(shapeAry + 0)) != NULL))
+	cout << "Rectangle 1: "<< (**(shapeAry + 0)) << endl;
+
+    if (((*(shapeAry + 1)) != NULL))
+	cout << "Rectangle 2: "<< (**(shapeAry + 1)) << endl;
+
+    if (((*(shapeAry + 4)) != NULL))
+	cout << "Box 1: " << (**(shapeAry + 4)) << endl;
+
+    if (((*(shapeAry + 5)) != NULL))
+	cout << "Box 2: " << (**(shapeAry + 5)) << endl;
+
+    if (((*(shapeAry + 2)) != NULL)) 
+	cout << "Circle 1: " << (**(shapeAry + 2)) << endl;
+
+    if (((*(shapeAry + 3)) != NULL))
+	cout << "Circle 2: " << (**(shapeAry + 3)) << endl;
+
+    if (((*(shapeAry + 6)) != NULL))
+	cout << "Cylinder 1: " << (**(shapeAry + 6)) << endl;
+
+    if (((*(shapeAry + 7)) != NULL))
+	cout << "Cylinder 2: " << (**(shapeAry + 7)) << endl;
 }
 
-void headerScottKinney(void) {
+void header(void) {
     cout << "\nCIS 25 - C++ Programming\n";
     cout << "Laney College\n";
     cout << "Scott Kinney\n\n";
@@ -453,6 +445,6 @@ void headerScottKinney(void) {
     cout << "  Due Date:          12/13/2013\n" << endl;
 }
 
-void errorInitScottKinney(void) {
+void errorInit(void) {
     cout << "Error: Object not initialized" << endl;
 }

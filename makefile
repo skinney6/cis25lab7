@@ -4,8 +4,8 @@
 # c++ debug -D_GLIBCXX_DEBUG
 # compile shared library (.so) -shared -fPIC
 CC := g++
-CPARMS := -Wall -Wextra
-LDFLAGS := 
+CPARMS := -Wall -Wextra -g
+LDFLAGS := -g
 
 PROJDIRS := .
 SRCFILES := $(shell find $(PROJDIRS) -maxdepth 1 -type f -name "*.cpp")

@@ -8,10 +8,7 @@
 #ifndef SCOTTKINNEYLAB7RECTANGLEUTILITY_H
 #define SCOTTKINNEYLAB7RECTANGLEUTILITY_H
 #include "ScottKinneyLab7Rectangle.h"
-#include "ScottKinneyLab7Fraction.h"
 
-void rectangleInit(RectangleScottK *&);
-
-FractionScottK compareArea(RectangleScottK &, RectangleScottK &);
+RectangleScottK*& rectangleInit(RectangleScottK *&);
 
 #endif

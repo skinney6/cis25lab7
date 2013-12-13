@@ -9,7 +9,13 @@
 #include "ScottKinneyLab7Point.h"
 #include "ScottKinneyLab7Fraction.h"
 #include "ScottKinneyLab7Rectangle.h"
+#include "ScottKinneyLab7Shape.h"
 using namespace std;
+
+void RectangleScottK::print(ostream &os) {
+    os << "Rectangle:\nLower Left " << ll << " Upper Right " << ur <<
+	"Area: " << getArea() << endl;
+}
 
 RectangleScottK& RectangleScottK::operator=(const RectangleScottK &arg) {
     if (this != &arg) {  // no self-assignemnet
@@ -19,12 +25,16 @@ RectangleScottK& RectangleScottK::operator=(const RectangleScottK &arg) {
     return *this;
 }
 
-FractionScottK RectangleScottK::getAreaScottKinney(void) {
-    return FractionScottK((ur.getX() - ll.getX()) * (ur.getY() - ll.getY()));
+FractionScottK RectangleScottK::getArea(void) const {
+    return FractionScottK(ll.area(ur));
 }
 
-ostream& operator<<(ostream &os, const RectangleScottK &rect) {
-    os << "Lower Left " << rect.ll << " Upper Right " << rect.ur;
+FractionScottK RectangleScottK::getVol(void) const {
+    return 0;
+}
+
+ostream& operator<<(ostream &os, RectangleScottK &rect) {
+    rect.print(os);
     return os;
 }
 
@@ -43,7 +53,7 @@ RectangleScottK::RectangleScottK(PointScottK &arg1, PointScottK &arg2) {
     } else {
 	ll = arg2;
 	ur = arg1;
-    }    
+    } 
 }
 
 RectangleScottK::RectangleScottK(const RectangleScottK &arg) {

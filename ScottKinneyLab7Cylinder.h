@@ -10,6 +10,7 @@
 #include "ScottKinneyLab7Fraction.h"
 #include "ScottKinneyLab7Point.h"
 #include "ScottKinneyLab7Circle.h"
+#include "ScottKinneyLab7Shape.h"
 
 class CylinderScottK : public CircleScottK {
 private:
@@ -22,9 +23,9 @@ public:
     ~CylinderScottK();
 
     void update(PointScottK &, FractionScottK &, FractionScottK &);
-    void print(void);
-    FractionScottK getAreaScottKinney(void);
-    FractionScottK getVolScottKinney(void);    
+    void print(ostream &);
+    FractionScottK getArea(void) const;
+    FractionScottK getVol(void) const;
 };
 
 #endif

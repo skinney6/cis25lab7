@@ -12,25 +12,14 @@
 #include "ScottKinneyLab7Box.h"
 #include "ScottKinneyLab7Circle.h"
 #include "ScottKinneyLab7Cylinder.h"
+#include "ScottKinneyLab7Shape.h"
 
-void mainMenuScottKinney(void);
-void menuCompAreaScottKinney(RectangleScottK *&, RectangleScottK *&, 
-			     BoxScottK *&, BoxScottK *&, CircleScottK *&, 
-			     CircleScottK *&, CylinderScottK *&, 
-			     CylinderScottK *&);
-
-void menuPrintAllInitScottKinney(RectangleScottK *&, RectangleScottK *&, 
-				 BoxScottK *&, BoxScottK *&, CircleScottK *&, 
-				 CircleScottK *&, CylinderScottK *&, 
-				 CylinderScottK *&);
-void menuPrintScottKinney(RectangleScottK *&, RectangleScottK *&, 
-			  BoxScottK *&, BoxScottK *&, 
-			  CircleScottK *&, CircleScottK *&, 
-			  CylinderScottK *&, CylinderScottK *&);
-
-void menuCompVolScottKinney(BoxScottK *&, BoxScottK *&, 
-			    CylinderScottK *&, CylinderScottK *&);
-void headerScottKinney(void);
-void errorInitScottKinney(void);
+void mainMenu(void);
+void menuCompArea(ShapeScottK *[], int);
+void menuCompVol(ShapeScottK *[], int);
+void menuPrintAllInit(ShapeScottK *[]);
+void menuPrint(ShapeScottK *[], int);
+void header(void);
+void errorInit(void);
 
 #endif

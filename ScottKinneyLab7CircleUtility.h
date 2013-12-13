@@ -8,9 +8,8 @@
 #ifndef SCOTTKINNEYLAB7CIRCLEUTILITY_H
 #define SCOTTKINNEYLAB7CIRCLEUTILITY_H
 
-#include "ScottKinneyLab7Fraction.h"
 #include "ScottKinneyLab7Circle.h"
 
-void circleInit(CircleScottK *&);
+CircleScottK*& circleInit(CircleScottK *&);
 
 #endif

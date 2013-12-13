@@ -26,8 +26,8 @@ int main() {
 
 int main() {
 
-    headerScottKinney();
-    mainMenuScottKinney();
+    header();
+    mainMenu();
 
     return 0;
 }

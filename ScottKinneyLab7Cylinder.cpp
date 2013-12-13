@@ -12,12 +12,12 @@ using namespace std;
 #include "ScottKinneyLab7Point.h"
 #include "ScottKinneyLab7Fraction.h"
 
-FractionScottK CylinderScottK::getAreaScottKinney(void) {
-    return FractionScottK((CircleScottK::getAreaScottKinney() * 2) * height);
+FractionScottK CylinderScottK::getArea(void) const {
+    return FractionScottK((CircleScottK::getArea() * 2) * height);
 }
 
-FractionScottK CylinderScottK::getVolScottKinney(void) {
-    return FractionScottK(CircleScottK::getAreaScottKinney() * height);
+FractionScottK CylinderScottK::getVol(void) const {
+    return FractionScottK(CircleScottK::getArea() * height);
 }
 
 CylinderScottK::CylinderScottK() {
@@ -44,8 +44,7 @@ CylinderScottK::CylinderScottK(CircleScottK &base, FractionScottK &h)
 CylinderScottK::~CylinderScottK() {
 }                 
 
-void 
-CylinderScottK::update(PointScottK &c, 
+void CylinderScottK::update(PointScottK &c, 
 		       FractionScottK &r, FractionScottK &h) {
     CircleScottK::update(c, r);
     if (height >= 0)
@@ -54,6 +53,9 @@ CylinderScottK::update(PointScottK &c,
 	height = 0;
 }
 
-void CylinderScottK::print(void) {
-    cout << (*this) << " Height " << height << endl;
+void CylinderScottK::print(ostream &os) {
+    os << "Cylinder:\nBase Circle: Radius " << CircleScottK::getR() 
+       << " Area " << CircleScottK::getArea() <<
+	"\nCylinder Area: " << CylinderScottK::getArea() <<
+	" Cylinder Volume: " << CylinderScottK::getVol() << endl;
 }

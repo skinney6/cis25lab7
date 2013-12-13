@@ -13,6 +13,24 @@ using namespace std;
 
 FractionScottK const six(6, 1);
 
+void BoxScottK::print(ostream &os) {
+    os << "Box:\nArea " << BoxScottK::getArea()
+       << " Vol " << BoxScottK::getVol() << endl;
+}
+
+FractionScottK BoxScottK::getHeight(void) const {
+    return height;
+}
+
+// multiply the rectangle area times 6 sides
+FractionScottK BoxScottK::getArea(void) const {
+    return FractionScottK((RectangleScottK::getArea()) * six);
+}
+
+FractionScottK BoxScottK::getVol(void) const {
+    return FractionScottK((RectangleScottK::getArea()) * height);
+}
+
 BoxScottK& BoxScottK::operator=(const BoxScottK &arg) {
     if (this != &arg) {  // no self-assignemnet
 	height = arg.height;
@@ -20,24 +38,11 @@ BoxScottK& BoxScottK::operator=(const BoxScottK &arg) {
     return *this;
 }
 
-FractionScottK BoxScottK::getHeight(void) {
-    return height;
-}
-
-// multiply the rectangle area times 6 sides
-FractionScottK BoxScottK::getAreaScottKinney(void) {
-    return FractionScottK(six * (RectangleScottK::getAreaScottKinney()));
-}
-
-FractionScottK BoxScottK::getVolScottKinney(void) {
-    return FractionScottK(height * (RectangleScottK::getAreaScottKinney()));
-}
-
 BoxScottK::BoxScottK() {
-    // default constructor
 }
 
 BoxScottK::~BoxScottK() {
+    //delete this;
 }
 
 BoxScottK::BoxScottK(PointScottK &ll, PointScottK &ur, FractionScottK &h) 
@@ -63,9 +68,5 @@ BoxScottK::update(PointScottK &ll, PointScottK & ur, FractionScottK &h) {
 	height = h;
     else
 	height = 0;
-}
-
-void BoxScottK::print(void) {
-    cout << (*this) << " Height " << height << endl;
 }
 
